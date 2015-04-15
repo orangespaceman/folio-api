@@ -1,0 +1,6 @@
+/vendor
+/cache/*
+!/cache/.gitkeep
+composer.phar
+config.php
+deploy.sh
