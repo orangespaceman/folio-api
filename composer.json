@@ -1,0 +1,14 @@
+{
+    "require": {
+        "slim/slim": "2.*",
+        "jdorn/file-system-cache": "dev-master",
+        "jwilsson/spotify-web-api-php": "0.8.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Api\\Middleware\\": "middleware/",
+            "Api\\Services\\": "services/",
+            "Api\\Routes\\": "routes/"
+        }
+    }
+}
