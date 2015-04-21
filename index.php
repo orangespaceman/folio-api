@@ -3,6 +3,7 @@
 // Load classes
 require 'vendor/autoload.php';
 require 'config.php';
+require 'cors.php';
 
 // Init Slim
 $app = new \Slim\Slim($config);
