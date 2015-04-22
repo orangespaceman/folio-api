@@ -84,7 +84,7 @@ class SpotifyService extends AbstractService
 
             $return[] = array(
                 'id' => $playlist->id,
-                'name' => $playlist->name,
+                'title' => $playlist->name,
                 'url' => $playlist->external_urls->spotify,
                 'image' => $playlist->images[count($playlist->images) -1]->url,
                 'tracks' => $playlist->tracks->total,

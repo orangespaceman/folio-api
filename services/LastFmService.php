@@ -90,7 +90,7 @@ class LastFmService extends AbstractService
         foreach($tracks as $track) {
             $return[] = array(
                 'artist' => $track->artist->{'#text'},
-                'track' => $track->name,
+                'title' => $track->name,
                 'date' =>$track->date->{'#text'}
             );
         }
