@@ -100,8 +100,8 @@ class GitHubService extends AbstractService
 
             $return[] = array(
                 'type' => $type,
-                'repo' => $commit->repo->name,
-                'url' => $commit->repo->url,
+                'title' => $commit->repo->name,
+                'url' => sprintf('https://github.com/%s', $commit->repo->name),
                 'date' => $commit->created_at
             );
         }
