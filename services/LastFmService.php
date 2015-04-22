@@ -49,7 +49,7 @@ class LastFmService extends AbstractService
             'limit' => $limit
         );
         $data = $this->constructRequest($params);
-        return $this->parseLatestTracks($data);
+        return $this->parseLatestTracks($data, $limit);
     }
 
     /**
@@ -73,10 +73,11 @@ class LastFmService extends AbstractService
      * Parse service response
      *
      * @param mixed $data Response received from service
+     * @param int $limit Limit request to required number of responses
      *
      * @return mixed Parsed response
      */
-    private function parseLatestTracks ($data)
+    private function parseLatestTracks ($data, $limit)
     {
         $return = array();
 
@@ -87,11 +88,24 @@ class LastFmService extends AbstractService
             $tracks = array($tracks);
         }
 
-        foreach($tracks as $track) {
+        foreach($tracks as $count => $track) {
+
+            // ensure we don't exceed the requested number of items to return
+            if ($count >= $limit) {
+                return $return;
+            }
+
+            // if the track is currently playing there will be no date
+            if (isset($track->date)) {
+                $date = $track->date->{'#text'};
+            } else {
+                $date = date(DATE_W3C);
+            }
+
             $return[] = array(
                 'artist' => $track->artist->{'#text'},
                 'title' => $track->name,
-                'date' =>$track->date->{'#text'}
+                'date' => $date
             );
         }
 
