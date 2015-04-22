@@ -116,11 +116,18 @@ class LastFmService extends AbstractService
             $artists = array($artists);
         }
 
+        $topPlayCount = null;
+
         foreach($artists as $artist) {
+
+            if (!$topPlayCount) {
+                $topPlayCount = $artist->playcount;
+            }
 
             $return[] = array(
                 'artist' => $artist->name,
                 'playcount' => $artist->playcount,
+                'playcount_percentage' => round(($artist->playcount / $topPlayCount) * 100),
                 'image' => $artist->image[0]->{'#text'}
             );
         }
