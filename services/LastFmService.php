@@ -105,7 +105,7 @@ class LastFmService extends AbstractService
             $return[] = array(
                 'artist' => $track->artist->{'#text'},
                 'title' => $track->name,
-                'date' =>$date
+                'date' => $date
             );
         }
 
