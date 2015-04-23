@@ -80,7 +80,7 @@ class FlickrService extends AbstractService
                 'title' => $photo->title,
                 'url' => $photo->link,
                 'image' => $photo->media->m,
-                'date' => $photo->date_taken
+                'date' => $photo->published
             );
         }
 
