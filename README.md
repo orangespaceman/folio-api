@@ -41,6 +41,7 @@ The cache directory may need `777` permissions
  - [Composer](https://getcomposer.org/)
  - [File System Cache](https://github.com/jdorn/FileSystemCache)
  - [Spotify Web API (PHP)](http://jwilsson.github.io/spotify-web-api-php/)
+ - [StravaPHP](https://github.com/basvandorst/StravaPHP/)
 
 ## APIs & Feeds
 
@@ -49,3 +50,4 @@ The cache directory may need `777` permissions
  - [Goodreads](https://www.goodreads.com/api)
  - [Last.fm](http://www.last.fm/api/feeds)
  - [Spotify](https://developer.spotify.com/web-api/)
+ - [Strava](http://strava.github.io/api/)
