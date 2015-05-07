@@ -19,6 +19,7 @@ $app->hook('slim.before.router', new \Api\Routes\Router(array(
     new \Api\Routes\FlickrRoute,
     new \Api\Routes\GoodreadsRoute,
     new \Api\Routes\SpotifyRoutes,
+    new \Api\Routes\StravaRoute,
 )));
 
 // Go!

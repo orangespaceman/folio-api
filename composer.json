@@ -2,7 +2,8 @@
     "require": {
         "slim/slim": "2.*",
         "jdorn/file-system-cache": "dev-master",
-        "jwilsson/spotify-web-api-php": "0.8.*"
+        "jwilsson/spotify-web-api-php": "0.8.*",
+        "basvandorst/StravaPHP": "1.0.1"
     },
     "autoload": {
         "psr-4": {

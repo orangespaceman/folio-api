@@ -19,5 +19,10 @@ $config = array(
         'client_id' => '',
         'client_secret' => '',
         'user' => ''
+    ),
+    'strava' => array(
+        'client_id' => '',
+        'client_secret' => '',
+        'access_token' => ''
     )
 );
