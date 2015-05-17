@@ -92,6 +92,6 @@ class StravaService extends AbstractService
     protected function secondsToTime ($seconds) {
         $dtF = new \DateTime("@0");
         $dtT = new \DateTime("@$seconds");
-        return $dtF->diff($dtT)->format('%h:%i:%s');
+        return $dtF->diff($dtT)->format('%h:%I:%S');
     }
 }
