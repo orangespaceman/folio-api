@@ -16,11 +16,11 @@ class StravaRoute extends AbstractRoutes
      */
     protected $routes = array(
         array(
-            'name' => 'Strava latest runs',
-            'url' => '/strava/latest-runs',
+            'name' => 'Strava latest activities',
+            'url' => '/strava/latest-activities',
             'methods' => 'GET',
             'params' => 'limit',
-            'classMethod' => 'getRuns'
+            'classMethod' => 'getActivities'
         ),
     );
 
@@ -28,11 +28,11 @@ class StravaRoute extends AbstractRoutes
      * Public route
      * Request data from service and respond
      */
-    public function getRuns ()
+    public function getActivities ()
     {
         $stravaService = new StravaService;
         $limit = $this->app->request->params('limit', 1);
-        $data = $stravaService->getRuns($limit);
+        $data = $stravaService->getActivities($limit);
         $this->respond($data);
     }
 }

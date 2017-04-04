@@ -50,32 +50,34 @@ class StravaService extends AbstractService
      *
      * @return mixed Parsed response
      */
-    public function getRuns ($limit)
+    public function getActivities ($limit)
     {
-        $data = $this->stravaApi->getAthleteActivities(null, null, 1, $limit);
-        return $this->parseRuns($data);
+        $activities = $this->stravaApi->getAthleteActivities(null, null, 1, $limit);
+        return $this->parseActivities($activities);
     }
 
     /**
      * Parse service response
      *
-     * @param mixed $data Response received from service
+     * @param mixed $activities Response received from service
      *
      * @return mixed Parsed response
      */
-    protected function parseRuns ($data)
+    protected function parseActivities ($activities)
     {
         $return = array();
 
-        foreach($data as $run) {
+        foreach($activities as $activity) {
 
             $return[] = array(
-                'id' => $run['id'],
-                'location' => $run['location_city'],
-                'date' => $run['start_date_local'],
-                'distance' => sprintf('%skm', round($run['distance'] * 0.001, 2)),
-                'time' => $this->secondsToTime($run['moving_time']),
-                'url' => sprintf('https://strava.com/activities/%d', $run['id']),
+                'id' => $activity['id'],
+                'name' => $activity['name'],
+                'location' => $this->getSegmentLocation($activity),
+                'date' => $activity['start_date_local'],
+                'type' => $activity['type'],
+                'distance' => sprintf('%skm', round($activity['distance'] * 0.001, 2)),
+                'time' => $this->secondsToTime($activity['moving_time']),
+                'url' => sprintf('https://strava.com/activities/%d', $activity['id']),
             );
         }
 
@@ -93,5 +95,21 @@ class StravaService extends AbstractService
         $dtF = new \DateTime("@0");
         $dtT = new \DateTime("@$seconds");
         return $dtF->diff($dtT)->format('%h:%I:%S');
+    }
+
+    /**
+     * Attempt to retrieve location, from segments
+     *
+     * @param obj $activity Actitivty object
+     *
+     * @return string
+     */
+    protected function getSegmentLocation ($activity) {
+        $activityDetail = $this->stravaApi->getActivity($activity['id'], true);
+        $location = '';
+        if (isset($activityDetail['segment_efforts']) && count($activityDetail['segment_efforts']) > 0) {
+          $location = $activityDetail['segment_efforts'][0]['segment']['city'];
+        }
+        return $location;
     }
 }
